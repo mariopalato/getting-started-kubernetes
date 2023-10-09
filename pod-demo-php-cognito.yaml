@@ -1,0 +1,9 @@
+#CONFIGURACIÓN DE POD BASICO
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo
+spec:
+  containers:
+  - name: demokubernetes
+    image: demo_kubernetes

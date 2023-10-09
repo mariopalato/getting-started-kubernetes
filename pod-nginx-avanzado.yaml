@@ -1,0 +1,51 @@
+#CONFIGURACIÓN DE POD AVANZADO
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine
+    #DEFINICIÓN DE VARIABLES DE AMBIENTE
+    env:
+      #CLAVE/VALOR
+    - name: MI_VARIABLE
+      value: "pelado"
+    - name: MI_OTRA_VARIABLE
+      value: "pelade"
+      #K8S TIENE ALGO LLAMADO DOWNWARD API SON VALORES QUE PUEDES OBTENER
+    - name: DD_AGENT_HOST
+      valueFrom:
+        fieldRef:
+          fieldPath: status.hostIP
+    #SE LE ASIGNAN RECURSOS A LOS CONTENEDORES NO AL POD
+    #DOS MANERAS 1.REQUEST 2.LIMITS
+    resources:
+      #LE GARANTIZAS AL CONTENEDOR EN REQUEST
+      requests:
+        memory: "64Mi"
+        #1000m (Milicores) = 1Core
+        cpu: "200m"
+      #ES EL LIMITE QUE EL CONTENEDOR PUEDE USAR
+      #EN DADO CASO QUE LLEGUE A SOBREPASAR EL LIMITE, EL KERNEL DE LINUX MATARA EL CONTENEDOR
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    #CUANDO UNA APP TARDA MUCHO EN COMENZAR ES RECOMENDABLA UTILIZAR AMBOS
+    #ES UNA FORMA DE EXPLICAR QUE EL CONTENEDOR ESTA LISTO PARA RECIBIR TRAFICO, ES SIMILAR A HEALTH CHECKS
+    readinessProbe:
+      httpGet:
+        path: /
+        port: 80
+      initialDelaySeconds: 5
+      periodSeconds: 10
+    #ES UNA FORMA DE EXPLICAR QUE EL CONTENEDOR ESTA VIVO
+    livenessProbe:
+      tcpSocket:
+        port: 80
+      initialDelaySeconds: 15
+      periodSeconds: 20
+    #PUERTO EN EL QUE SE VA A EXPONER
+    ports:
+    - containerPort: 80
