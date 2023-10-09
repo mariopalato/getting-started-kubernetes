@@ -12,8 +12,9 @@ En la actualidad es fácil instalar K8S en cualquier parte. A continucación se 
     
     kubectl version --client=true
     
-2.Para conectar la herramienta o el cliente Kubectl a un cluster de Kubernetes ocupas un archivo llamado **kube.config**, es donde estan declarados todos tus contextos (es una combinación de la URL para conectarte).
+2.Para conectar la herramienta o el cliente Kubectl a un cluster de Kubernetes ocupas un archivo llamado **kube.config**, es donde estan declarados todos tus contextos (es una combinación de la URL para conectarte). Los clusters puedes estar creados en ambientes de nube (AWS, Azure, Digital Ocean...) o en un ambiente local (Minikube).
 
+### Comandos generales de K8S
 3.Comando para obtener los nodos de kubernetes que se estan ejecutando en el cluster.
 
     kubectl get nodes
@@ -40,17 +41,17 @@ En la actualidad es fácil instalar K8S en cualquier parte. A continucación se 
 
     *Si no le especificas un namespaces, tomará el default*
 
-8.Podemos ejecutar comandos dentro de los PODS (contenedores a elegir) con el siguiente comando:
+8.Podemos ejecutar **comandos dentro de los PODS** (contenedores a elegir) con el siguiente comando:
 
     kubectl exec -n NAMESPACE -it NOMBRE_CONTENEDOR -- COMMANDO
     kubectl exec -n default -it nginx -- sh  INGRESA AL CONTENEDOR POR MEDIO DE SH
 
-9.Para eliminar un POD directamente se puede hacer con el siguiente comando
+9.Para **eliminar un POD** directamente se puede hacer con el siguiente comando
 
     kubectl -n NAMESPACE delete pod NOMBRE_POD
     kubectl -n default delete pod nginx
 
-*NO ES RECOMENDABLE DESPLEGAR SOLO PODS, PARA ESO EXISTEN LOS DEPLOYMENTS EN K8S QUE SON TEMPLATES PARA CREAR PODS*
+*NO ES RECOMENDABLE DESPLEGAR SOLO PODS, PARA ESO EXISTEN LOS **DEPLOYMENTS** EN K8S QUE SON TEMPLATES PARA CREAR PODS*
 
 10.Seguimos manejando la misma estructura para ejecutar un manifiesto, pero en este caso de un deployment
 
@@ -59,16 +60,16 @@ En la actualidad es fácil instalar K8S en cualquier parte. A continucación se 
     Eliminar un deployment
     kubectl delete -f NOMBRE_ARCHIVO_DEPLOYMENT_LANZADO
 
-*EXISTE OTRA MANERA DE DESPLEGAR PODS, DAEMONSET ES LA MANERA DE DESPLEGAR PODS EN TODOS LOS NODOS DEL CLUSTER, NO TIENE EL ATRIBUTO REPLICAS. SE UTILIZA MAS PARA SERVICIOS DE MONITOREO O CAPTURAR LOGS*
+*EXISTE OTRA MANERA DE DESPLEGAR PODS, **DAEMONSET** ES LA MANERA DE DESPLEGAR PODS EN TODOS LOS NODOS DEL CLUSTER, NO TIENE EL ATRIBUTO REPLICAS. SE UTILIZA MAS PARA SERVICIOS DE MONITOREO O CAPTURAR LOGS*
 
-11.Seguimos manejando la misma estructura para ejecutar un manifiesto, pero en este caso de un daemonset
-    
+11.Seguimos manejando la misma estructura para ejecutar un manifiesto, pero en este caso de un **daemonset**
+
     kubectl apply -n NAMESPACE -f NOMBRE_ARCHIVO
     kubectl apply -n default -f daemonset-gninx-avanzado.yaml
 
-*TAMBIÉN PODEMOS CREAR PODS CON UN TIPO STATEFULSET, ES UNA MANERA DE CREAR PODS COMO EN UN DEPLOYMENT PERO PUEDE TENER UN VOLUMEN (SIMILAR A DOCKER, ES UN DISCO ATADO AL POD), ES MUY UTIL PARA BD. EL VOLUMEN PUEDE PERSISTIR A PESAR DE LA ELIMINACIÓN DEL POD ATACHADO*
+*TAMBIÉN PODEMOS CREAR PODS CON UN TIPO **STATEFULSET**, ES UNA MANERA DE CREAR PODS COMO EN UN DEPLOYMENT PERO PUEDE TENER UN **VOLUMEN** (SIMILAR A DOCKER, ES UN DISCO ATADO AL POD), ES MUY UTIL PARA BD. EL VOLUMEN PUEDE PERSISTIR A PESAR DE LA ELIMINACIÓN DEL POD ATACHADO*
 
-12.Seguimos manejando la misma estructura para ejecutar un manifiesto, pero en este caso de un statefulset
+12.Seguimos manejando la misma estructura para ejecutar un manifiesto, pero en este caso de un **statefulset**
     
     kubectl apply -n NAMESPACE -f NOMBRE_ARCHIVO
 
@@ -76,7 +77,7 @@ En la actualidad es fácil instalar K8S en cualquier parte. A continucación se 
     
     kubectl describe pod NOMBRE_POD
 
-14.Mostrar PVC (volumenes creados)
+14.Mostrar **PVC** (Persisten Volume Claims)
     
     kubectl -n NAMESPACE get pvc
     kubectl -n NAMESPACE describe PVC
