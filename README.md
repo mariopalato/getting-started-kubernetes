@@ -1,16 +1,18 @@
-# También llamado K8S
+# Notas generales K8S
 
 Kubernetes es declarativo
 
-Kubernetes cuenta con un panel de control y con los nodos
-    Cada uno de los nodos estará ejecutando el agente de kubelet y kube-proxy
-ETCD es la base de datos de K8S
+Kubernetes cuenta con un panel de control y con los nodos. Cada uno de los nodos estará ejecutando el agente de kubelet y kube-proxy, por otra parte, ETCD es la base de datos de K8S.
 
-En la actualidad es fácil instalar K8S en cualquier parte
+En la actualidad es fácil instalar K8S en cualquier parte. A continucación se muestra el proceso de instalación de K8S en un ambiente local de LINUX (Linux Mint)
 
-1.Instalar Kubectl
-    kubectl version --client=true
+### Instalación entorno de K8S
 
+1.Instalar Kubectl. Con el siguiente comando puedes comprobar la versión que tienes instalada de Kubectl
+    ```sh
+        kubectl version --client=true
+    ```
+    
 *Para ejecutar un cluster de kubernetes lo puedes hacer con Docker Desktop para MacOS y Windows y para Linux puedes utilizar una herramienta llamada KIND o MINIKUBE(Recomendada)*
 
 2.Para conectar la herramienta o el cliente Kubectl a un cluster de Kubernetes ocupas un archivo llamado kube.config, es donde estan declarados todos tus contextos (es una combinación de la URL para conectarte)
