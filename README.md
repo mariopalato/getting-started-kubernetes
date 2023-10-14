@@ -82,3 +82,39 @@ En la actualidad es fácil instalar K8S en cualquier parte. A continucación se 
     kubectl -n NAMESPACE get pvc
     kubectl -n NAMESPACE describe PVC
 
+**NETWORKING EN KUBERNETES**
+
+15.Cada **POD** tiene su propia dirección IP
+
+**SERVICIOS EN KUBERNETES**
+
+Es una forma de contactar aplicaciones, un set de PODS, de un POD hacia otro o desde afuera de cluster.
+Existen 3 tipos de servicios en K8S: 
+    ClusterIP.- Es una IP fija que esta dentro del cluster, actua como un mini load balancer 
+    Node Port.- Crea un puerto en cada nodo, similar
+    Load Balancer.- Mas atado a la nube, crea un balanceador de carga en nuestro cliente de nube
+
+*CLUSTER IP*
+16.Mostramos todo lo que tiene nuestro namespace
+
+    kubectl -n NAMESPACE get all
+    kubectl -n default get all
+
+17.Si queremos saber que dirección IP tiene cada POD dentro de un servicio de CLUSTER IP, lo hacemos con el siguiente comando
+
+    kubectl -n NAMESPACE describe service NOMBRE_SERVICE
+    kubectl -n default describe svc hello
+
+o también lo podemos ver obteniendo todos los PODS con el comando general.
+
+    kubectl -n NAMESPACE get pods -o wide
+
+conectandonos al contenedor de ubuntu
+
+    kubectl -n NAMESPACE exec -it CONTAINER -- bash
+
+*NODE PORT*
+18.Es una manera de exponer todo el nodo completo al puerto que se defina en el servicio NODE PORT, de esta forma podríamos exponer todo el nodo al internet.
+
+*LOAD BALANCER*
+19.

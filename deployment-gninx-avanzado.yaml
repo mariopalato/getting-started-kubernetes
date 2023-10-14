@@ -9,7 +9,7 @@ spec:
     matchLabels:
       app: nginx
   #CANTIDAD DE PODS QUE QUEREMOS EN NUESTRO DEPLOYMENT
-  replicas: 2
+  replicas: 3
   template:
     metadata:
       labels:

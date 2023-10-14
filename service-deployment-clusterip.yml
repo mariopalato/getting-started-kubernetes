@@ -1,0 +1,39 @@
+#TEMPLATE PARA EL TIPO DE SERVICIO: CLUSTER IP
+#ACTUA COMO UNA ESPECIE DE MINI BALANCEADOR PARA REDIRECCIONAR EL TRAFICO
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      role: hello
+  template:
+    metadata:
+      labels:
+      #AGREGADO, PUEDE SER LOS QUE GUSTES
+        role: hello
+    spec:
+      containers:
+      - name: hello
+        image: gcr.io/google-samples/hello-app:1.0
+        ports:
+        - containerPort: 8080
+
+---
+#CLUSTER IP, TIPO DE SERVICIO
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello
+spec:
+  #SI NO ESPECIFICAS EL TIPO DE SERVICIO SE CREA EN CLUSTE IP
+  ports:
+  #PUERTO EXPUESTO POR EL SERVICIO
+  - port: 8080
+  #PUERTO DESTINO DEL CONTAINER
+    targetPort: 8080
+  #SELECTOR ->  QUE CREAMOS, A TODOS LOS PODS QUE LA TENGAN 
+  selector:
+    role: hello
