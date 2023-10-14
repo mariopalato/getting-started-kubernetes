@@ -95,6 +95,7 @@ Existen 3 tipos de servicios en K8S:
     Load Balancer.- Mas atado a la nube, crea un balanceador de carga en nuestro cliente de nube
 
 *CLUSTER IP*
+
 16.Mostramos todo lo que tiene nuestro namespace
 
     kubectl -n NAMESPACE get all
@@ -114,7 +115,9 @@ conectandonos al contenedor de ubuntu
     kubectl -n NAMESPACE exec -it CONTAINER -- bash
 
 *NODE PORT*
+
 18.Es una manera de exponer todo el nodo completo al puerto que se defina en el servicio NODE PORT, de esta forma podríamos exponer todo el nodo al internet.
 
 *LOAD BALANCER*
+
 19.
